@@ -101,9 +101,7 @@ async def my_event_handler(event):
                     bid = float(current_price['bid'])
                     await client.send_message(-1001964100487, str(bid))
                     ID = str((ID['positionId']))
-                    await client.send_message(-1001967508097, ID)
-                    ID = str((ID['orderId']))
-                    await client.send_message(-1001987719345, ID)       
+                    await client.send_message(-1001951476501, ID)
 
                 else:
                     msg = (ID['message'])
@@ -117,9 +115,7 @@ async def my_event_handler(event):
                 bid = float(current_price['bid'])
                 await client.send_message(-1001964100487, str(bid))
                 PID = str((ID['positionId']))
-                await client.send_message(-1001967508097, PID)               
-                ID = str((ID['orderId']))
-                await client.send_message(-1001987719345, ID)       
+                await client.send_message(-1001951476501, PID)                
                     
 
         elif order == "SELL" and order_check == "NOW":
@@ -131,17 +127,13 @@ async def my_event_handler(event):
                     ask = float(current_price['ask'])
                     await client.send_message(-1001964100487, str(ask))
                     PID = str((ID['positionId']))
-                    await client.send_message(-1001967508097, PID)  
-                    OID = str((ID['orderId']))
-                    await client.send_message(-1001987719345, OID)                     
+                    await client.send_message(-1001951476501, PID)                  
                 else:
                     msg = (ID['message'])
                     await client.send_message(igroup, msg)
 
                 PID = str((ID['positionId']))
-                await client.send_message(-1001967508097, PID)
-                OID = str((ID['orderId']))
-                await client.send_message(-1001987719345, OID)                       
+                await client.send_message(-1001951476501, PID)                     
 
             else:
                 ID=await connection.create_market_sell_order(pair, 0.01,float(sl),float(tp1))
@@ -150,24 +142,17 @@ async def my_event_handler(event):
                 ask = float(current_price['ask'])
                 await client.send_message(-1001964100487, str(ask))
                 PID = str((ID['positionId']))
-                await client.send_message(-1001967508097, PID)                
-                OID = str((ID['orderId']))
-                await client.send_message(-1001987719345, OID)        
+                await client.send_message(-1001951476501, PID)                
         else:
             pass
              
     elif tstring[1] == 'Let’s close first entry and set BREAKEVEN last layer. Scalpers can close all now ✅':
-        async for message in client.iter_messages(-1001967508097):
+        async for message in client.iter_messages(-1001951476501):
             ID = str(message.text)
             async for message in client.iter_messages(-1001964100487):
                 sl = float(message.text)
                 await connection.modify_position(ID, sl)
-            
 
-
-
-
-         
     else:
         pass
 
